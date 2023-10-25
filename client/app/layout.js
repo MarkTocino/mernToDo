@@ -1,19 +1,21 @@
+"use client"
 import './globals.css'
 import { Montserrat } from 'next/font/google'
-
+import { NextUIProvider } from '@nextui-org/react'
+import Navigation from './navigation'
 const montserrat = Montserrat({ 
   weight:'600',
   subsets: ['latin'] })
 
-export const metadata = {
-  title: 'To Do Application',
-  description: 'To Do Application',
-}
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        <NextUIProvider>
+          <Navigation />
+        {children}
+        </NextUIProvider>
+        </body>
     </html>
   )
 }
