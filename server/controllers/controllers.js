@@ -1,4 +1,6 @@
 import { User } from "../models/user.js";
+import { Car } from "../models/car.js";
+import { SUV } from "../models/suv.js";
 import { hashPassword, comparePassword } from "../helpers/password.js";
 import jwt from 'jsonwebtoken'
 // USER STUFF
@@ -63,4 +65,15 @@ export const loginUser = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
+}
+// GET CARS
+export const hondaCars = async (req, res) => {
+    const cars = await Car.find({});
+    return res.json({cars});
+}
+// GET SUVS
+export const hondaSuv = async (req, res) => {
+    const suvs = await SUV.find({});
+    console.log(suvs)
+    return res.json({suvs});
 }

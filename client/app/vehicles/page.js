@@ -1,9 +1,14 @@
 import React from 'react'
+import Cars from '../components/vehiclesCars'
+export const dynamic = 'auto',
+dynamicParams = true,
+revalidate = 0,
+runtime = 'nodejs',
+prefferedRegion = 'auto'
 
-const page = () => {
+
+export default async function vehicles() {
   return (
-    <div>page</div>
+    <Cars/>
   )
 }
-
-export default page

@@ -1,5 +1,5 @@
 import express from 'express'
-import { loginUser, registerUser } from '../controllers/controllers.js'
+import { loginUser, registerUser , hondaCars, hondaSuv} from '../controllers/controllers.js'
 import cors from 'cors'
 const router = express.Router()
 
@@ -11,4 +11,7 @@ router.use(
 )
 router.post('/register', registerUser)
 router.post('/login', loginUser)
+router.get('/cars', hondaCars)
+router.get('/suv', hondaSuv)
+
 export default router
