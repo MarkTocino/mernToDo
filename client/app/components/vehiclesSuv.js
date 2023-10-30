@@ -6,15 +6,16 @@ prefferedRegion = 'auto'
 
 
 async function getAllCars() {
-  const carsFetch = await fetch('http://localhost:8001/cars')
+  const carsFetch = await fetch('http://localhost:8001/suv')
   const carsRes = await carsFetch.json()
-  return carsRes?.cars
+  console.log(carsRes)
+  return carsRes?.suvs
 }
 
-export default async function Cars() {
+export default async function Suv() {
 const cars = await getAllCars()
   return (
-    <div className="flex flex-row text-left">
+    <div className="flex flex-row text-left"> 
       {cars.map((cars,index) => {
         return <ListCars key={index} cars={cars}/>
       })}
