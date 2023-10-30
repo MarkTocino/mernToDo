@@ -1,14 +1,17 @@
 'use client'
 import React,{ useState } from "react";
 import {NavbarMenu, Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenuItem} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
+import { CartContext } from "./CartContext/CartContext";
+import { useContext } from "react";
 export default function Navigation () {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const menuItems = [
-      'Vehicles',
-      'Shopping Tools',
-      'Explore',
-      'Compare',
-    ]
+  const cart = useContext(CartContext)
+  const {isOpen,onOpen,onOpenChange} = useDisclosure()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0)
+  const menuItems = [
+    'Vehicles',
+  ]
 return (
     <Navbar className="max-w-screen justify-end" maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
     <NavbarContent className="sm:justify-center">
@@ -29,17 +32,34 @@ return (
         </Link>
       </NavbarItem>
       <NavbarItem>
-        <Link href='/shoppingtools'>SHOPPING TOOLS</Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Link href="/explore">
-          EXPLORE
-        </Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Link href="/compare">
-        COMPARE
-        </Link>
+        <Button onPress={onOpen} className="text-md text-blue-500" color="">CART ({productsCount} Items)</Button>
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Shopping Cart</ModalHeader>
+              <ModalBody>
+                {productsCount > 0 ? 
+                <>
+                <p>Items in your cart</p>
+                {cart.items.map((currentProduct,idx) => (
+                  <h1>{currentProduct.id}</h1>
+                ))}
+                <h1>Total : {cart.getTotalCost()}</h1>
+                </> : ""}
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Buy
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
       </NavbarItem>
     </NavbarContent>
     <NavbarMenu>

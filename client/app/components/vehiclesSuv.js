@@ -8,14 +8,13 @@ prefferedRegion = 'auto'
 async function getAllCars() {
   const carsFetch = await fetch('http://localhost:8001/suv')
   const carsRes = await carsFetch.json()
-  console.log(carsRes)
   return carsRes?.suvs
 }
 
 export default async function Suv() {
 const cars = await getAllCars()
   return (
-    <div className="flex flex-row text-left"> 
+    <div className="flex flex-row text-left p-5"> 
       {cars.map((cars,index) => {
         return <ListCars key={index} cars={cars}/>
       })}
@@ -26,7 +25,7 @@ const cars = await getAllCars()
 async function ListCars({cars}) {
   const { model, year, bodyType, engine, horsepower, transmission, image , mpg} = cars || {}
   return (
-  <div>
+  <div className="border-2 rounded-2xl p-5 m-3">
       <img src={image}/>
       <h1>Model : {model}</h1>
       <h1>Year : {year}</h1>

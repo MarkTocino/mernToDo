@@ -74,6 +74,5 @@ export const hondaCars = async (req, res) => {
 // GET SUVS
 export const hondaSuv = async (req, res) => {
     const suvs = await SUV.find({});
-    console.log(suvs)
     return res.json({suvs});
 }
