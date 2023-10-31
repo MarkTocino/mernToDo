@@ -1,8 +1,8 @@
 "use client"
-import Link from "next/link"
+
 import { Button } from "@nextui-org/react"
 import { CartContext } from "../CartContext/CartContext"
-import { useContext } from "react"
+import { useContext,useState, useEffect } from "react"
 
 export const dynamic = 'auto',
 dynamicParams = true,
@@ -59,13 +59,14 @@ function ListCars({cars}) {
 }
 
 async function getCarData(id) {
-  const allCars = await getAllCars()
-  let productData = await allCars.find(cars => cars._id === id);
+  const carsFetch = await fetch('http://localhost:8001/cars')
+  const carsRes = await carsFetch.json()
+  // return carsRes?.cars
+  let productData = await carsRes?.cars.find(cars => cars._id === id);
   if (productData == undefined) {
     console.log("Product does not exist for ID:" + id);
     return undefined;
   }
   return productData
-
 }
 export { getCarData }

@@ -45,7 +45,7 @@ return (
                 {cart.items.map((currentProduct,idx) => (
                   <h1>{currentProduct.id}</h1>
                 ))}
-                <h1>Total : {cart.getTotalCost()}</h1>
+                <h1>Total : ${cart.getTotalCost()}</h1>
                 </> : ""}
               </ModalBody>
               <ModalFooter>

@@ -13,6 +13,7 @@ export const CartContext = createContext({
 
 export function CartProvider({children}) {
     const [cartProducts, setCartProducts] = useState([])
+    const [price, setPrice] = useState()
 // cartProducts will be the products that we put into the cart and it starts as an empty array because we don't have anything from the beginning
     function getProductQuantity(id) {
         const quantity = cartProducts.find(product => product.id === id)?.quantity;
@@ -68,14 +69,14 @@ export function CartProvider({children}) {
     function getTotalCost(){
         let totalCost = 0;
         cartProducts?.map((cartItem) => {
-            const productData = getCarData(cartItem.id);
-            totalCost += (parseInt(productData?.price) * cartItem.quantity);
-            console.log(productData)
-        }
-        )
+        getCarData(cartItem.id)
+            .then(productData => {
+               return setPrice(productData)});
+                console.log(price)
+            return totalCost += (price?.price * cartItem.quantity);
+        })
         return totalCost
     }
-
     const contextValue = {
         items:cartProducts,
         getProductQuantity,
