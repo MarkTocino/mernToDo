@@ -1,6 +1,7 @@
 'use client'
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { getCarData } from "../components/vehicleCars";
+import { image } from "@nextui-org/react";
 
 export const CartContext = createContext({
     items: [],
@@ -69,11 +70,11 @@ export function CartProvider({children}) {
     function getTotalCost(){
         let totalCost = 0;
         cartProducts?.map((cartItem) => {
-        getCarData(cartItem.id)
-            .then(productData => {
-               return setPrice(productData)});
-                console.log(price)
-            return totalCost += (price?.price * cartItem.quantity);
+            useEffect(() => {
+                getCarData(cartItem.id)
+                .then(cars => setPrice(cars))
+            },[cartItem])
+            totalCost += (parseInt(price?.price) * cartItem.quantity);
         })
         return totalCost
     }

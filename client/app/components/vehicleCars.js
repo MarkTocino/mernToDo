@@ -61,7 +61,6 @@ function ListCars({cars}) {
 async function getCarData(id) {
   const carsFetch = await fetch('http://localhost:8001/cars')
   const carsRes = await carsFetch.json()
-  // return carsRes?.cars
   let productData = await carsRes?.cars.find(cars => cars._id === id);
   if (productData == undefined) {
     console.log("Product does not exist for ID:" + id);

@@ -1,9 +1,10 @@
 'use client'
 import React,{ useState } from "react";
-import {NavbarMenu, Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenuItem} from "@nextui-org/react";
+import {NavbarMenu, Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenuItem, image} from "@nextui-org/react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import { CartContext } from "./CartContext/CartContext";
 import { useContext } from "react";
+import GetCar from "./helpers/cars";
 export default function Navigation () {
   const cart = useContext(CartContext)
   const {isOpen,onOpen,onOpenChange} = useDisclosure()
@@ -42,8 +43,8 @@ return (
                 {productsCount > 0 ? 
                 <>
                 <p>Items in your cart</p>
-                {cart.items.map((currentProduct,idx) => (
-                  <h1>{currentProduct.id}</h1>
+                {cart.items?.map((currentProduct,idx) => (
+                  <GetCar id={currentProduct.id} model={currentProduct.model} image={currentProduct.image} quantity={currentProduct.quantity}/>
                 ))}
                 <h1>Total : ${cart.getTotalCost()}</h1>
                 </> : ""}
