@@ -20,14 +20,14 @@ return (
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         className="sm:hidden"
       />
-      <NavbarBrand className="flex lg:justify-end justify-center">
+      <NavbarBrand className="ml-28 w-16 md:justify-start lg:justify-end justify-center">
         <a href="/" className="font-bold text-inherit">
                 <img className="h-8 flex" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/2560px-Honda.svg.png"/>
         </a>
       </NavbarBrand>
     </NavbarContent>
-    <NavbarContent className="hidden sm:flex gap-4 p-0" justify="end">
-      <NavbarItem>
+    <NavbarContent className="sm:flex gap-4 p-0" justify="end">
+      <NavbarItem className="hidden sm:flex">
         <Link href="/vehicles">
           VEHICLES
         </Link>
