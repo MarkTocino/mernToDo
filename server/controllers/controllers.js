@@ -76,3 +76,6 @@ export const hondaSuv = async (req, res) => {
     const suvs = await SUV.find({});
     return res.json({suvs});
 }
+export const nothing = async (req, res) => {
+    res.send({title:"books"});
+}
