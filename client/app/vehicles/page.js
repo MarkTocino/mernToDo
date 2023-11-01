@@ -1,6 +1,6 @@
 import React from 'react'
 import Cars from '../components/vehicleCars'
-import Suv from '../components/vehiclesSuv'
+import Suvs from '../components/vehicleSuvs'
 export const dynamic = 'auto',
 dynamicParams = true,
 revalidate = 0,
@@ -11,10 +11,10 @@ prefferedRegion = 'auto'
 export default async function vehicles() {
   return (
     <div>
-      <h1 className='flex text-3xl'>SEDANS</h1>
+      <h1 className='text-3xl text-left ml-20'>SEDANS</h1>
         <Cars/>
-        <h1 className='flex text-3xl'>SUV'S</h1>
-        <Suv />
+      <h1 className='text-3xl text-left ml-20'>SUVS</h1>
+        <Suvs/>
     </div>
   )
 }

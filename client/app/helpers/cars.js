@@ -13,14 +13,14 @@ function GetCar(props){
         getCarData(id)
         .then(car => setData(car))
     },[])
-    console.log(data)
+    console.log(id)
     return (
         <div>
             <p>{data?.model}</p>
             <img src={data?.image}/>
             <p>Quantity : {quantity}</p>
             <p>${(quantity * data?.price)}</p>
-            <Button size="sm" onClick={() => cart.deleteFromCart(id)}>Remove</Button>
+            {/* <Button size="sm" onClick={() => cart.deleteFromCart(id)}>Remove</Button> */}
         </div>
     )
 }

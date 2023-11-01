@@ -2,7 +2,7 @@
 
 import { Button } from "@nextui-org/react"
 import { CartContext } from "../CartContext/CartContext"
-import { useContext,useState, useEffect } from "react"
+import { useContext } from "react"
 
 export const dynamic = 'auto',
 dynamicParams = true,
@@ -16,12 +16,14 @@ async function getAllCars() {
   const carsRes = await carsFetch.json()
   return carsRes?.cars
 }
-
+// SEDANS
 export default async function Cars() {
 const cars = await getAllCars()
+const onlyCars = cars.slice(0,4)
+console.log(onlyCars)
   return (
-    <div className="flex flex-row text-left p-5">
-      {cars.map((cars,index) => {
+    <div className="flex flex-row flex-wrap text-left justify-evenly p-5">
+      {onlyCars.map((cars,index) => {
         return <ListCars key={index} cars={cars}/>
       })}
     </div>
@@ -33,7 +35,7 @@ function ListCars({cars}) {
   const cart = useContext(CartContext)
   const productQuantity = cart.getProductQuantity(_id)
   return (
-  <div className="border-2 rounded-2xl p-5 m-3">
+  <div className="border-2 rounded-2xl p-4 m-1 h-fit w-96">
       <img src={image}/>
       <h1>Model : {model}</h1>
       <h1>Year : {year}</h1>

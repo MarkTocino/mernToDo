@@ -41,13 +41,13 @@ return (
               <ModalHeader className="flex flex-col gap-1">Shopping Cart</ModalHeader>
               <ModalBody>
                 {productsCount > 0 ? 
-                <>
+                <div>
                 <p>Items in your cart</p>
                 {cart.items?.map((currentProduct,idx) => (
-                  <GetCar id={currentProduct.id} model={currentProduct.model} image={currentProduct.image} quantity={currentProduct.quantity}/>
+                  <GetCar key={idx} id={currentProduct.id} model={currentProduct.model} image={currentProduct.image} quantity={currentProduct.quantity}/>
                 ))}
                 <h1>Total : ${cart.getTotalCost()}</h1>
-                </> : ""}
+                </div> : "Shopping Cart Empty"}
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
