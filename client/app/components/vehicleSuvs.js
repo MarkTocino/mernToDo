@@ -12,7 +12,7 @@ prefferedRegion = 'auto'
 
 
 async function getAllCars() {
-  const carsFetch = await fetch('http://localhost:8001/cars')
+  const carsFetch = await fetch('https://enthusiastic-puce-dove.cyclic.app/cars')
   const carsRes = await carsFetch.json()
   return carsRes?.cars
 }
@@ -60,7 +60,7 @@ function ListCars({cars}) {
       }
       
       async function getCarData(id) {
-        const carsFetch = await fetch('http://localhost:8001/cars')
+        const carsFetch = await fetch('https://enthusiastic-puce-dove.cyclic.app/cars')
         const carsRes = await carsFetch.json()
         let productData = await carsRes?.cars.find(cars => cars._id === id);
         if (productData == undefined) {
