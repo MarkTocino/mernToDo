@@ -6,7 +6,7 @@ const router = express.Router()
 router.use(
     cors({
         credentials:true,
-        origin: 'https://enthusiastic-puce-dove.cyclic.app/'
+        origin: 'https://enthusiastic-puce-dove.cyclic.app/cars'
     })
 )
 router.get('/',nothing )
