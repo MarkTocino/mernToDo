@@ -72,8 +72,10 @@ export function CartProvider({children}) {
         
             cartProducts?.forEach(async (cartItem) => {
                 try {
-                    const cars = await getCarData(cartItem.id);
-                    const lastPrice = parseInt(cars?.price);
+                    await getCarData(cartItem.id)
+                    .then(price => setPrice(price));
+                    const lastPrice = parseInt(price?.price);
+                    console.log(price)
                     return totalCost += lastPrice * cartItem.quantity;
                 } catch (error) {
                     console.error("Error fetching car data:", error);
