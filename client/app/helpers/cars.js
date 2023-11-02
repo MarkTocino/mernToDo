@@ -13,7 +13,6 @@ function GetCar(props){
         getCarData(id)
         .then(car => setData(car))
     },[])
-    console.log(id)
     return (
         <div>
             <p>{data?.model}</p>

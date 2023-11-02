@@ -67,21 +67,14 @@ export function CartProvider({children}) {
                 })
             )
         }
-        function getTotalCost(cartProducts) {
+        function getTotalCost() {
             let totalCost = 0;
-        
-            cartProducts?.forEach(async (cartItem) => {
-                try {
-                    await getCarData(cartItem.id)
-                    .then(price => setPrice(price));
-                    const lastPrice = parseInt(price?.price);
-                    console.log(price)
-                    return totalCost += lastPrice * cartItem.quantity;
-                } catch (error) {
-                    console.error("Error fetching car data:", error);
-                }
-            });
-        
+            cartProducts?.map((cartItem) => {
+                useEffect(() => {
+                    getCarData(cartItem.id)
+                    .then(cars => setPrice(cars))},[cartItem])
+                    totalCost += (parseInt(price?.price) * cartItem.quantity)
+                })
             return totalCost;
         }
     const contextValue = {

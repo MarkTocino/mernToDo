@@ -20,7 +20,6 @@ async function getAllCars() {
 export default async function Cars() {
 const cars = await getAllCars()
 const onlyCars = cars.slice(0,4)
-console.log(onlyCars)
   return (
     <div className="flex flex-row flex-wrap text-left justify-evenly p-5">
       {onlyCars.map((cars,index) => {

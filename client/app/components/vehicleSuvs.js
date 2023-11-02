@@ -20,8 +20,7 @@ async function getAllCars() {
 export default async function Suvs() {
     const cars = await getAllCars()
     const onlyCars = cars.slice(4,8)
-    console.log(onlyCars)
-      return (
+          return (
         <div className="flex flex-row flex-wrap text-left justify-evenly p-5">
           {onlyCars.map((cars,index) => {
             return <ListCars key={index} cars={cars}/>
