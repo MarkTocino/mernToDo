@@ -69,14 +69,12 @@ export function CartProvider({children}) {
         }
         function getTotalCost() {
             let totalCost = 0;
-            cartProducts?.map((cartItem) => {
-                useEffect(() => {
-                    getCarData(cartItem.id)
-                    .then(cars => setPrice(cars))},[cartItem])
-                    totalCost += (parseInt(price?.price) * cartItem.quantity)
-                })
-            return totalCost;
-        }
+            cartProducts?.forEach((cartItem) => {
+                getCarData(cartItem.id).then((cars) => setPrice(cars))
+                  totalCost += parseInt(price?.price) * cartItem.quantity;
+            })
+              return totalCost
+            }
     const contextValue = {
         items:cartProducts,
         getProductQuantity,
