@@ -35,7 +35,7 @@ return (
       <NavbarItem>
         <Button onPress={onOpen} className="text-md text-blue-500" color="">CART ({productsCount} Items)</Button>
         <Modal placement="auto" isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent className="flex h-96">
+        <ModalContent className="flex h-auto">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Shopping Cart</ModalHeader>

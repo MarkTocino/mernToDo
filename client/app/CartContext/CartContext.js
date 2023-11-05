@@ -28,13 +28,15 @@ export function CartProvider({children}) {
         const quantity = getProductQuantity(id);
 
         if (quantity === 0) {
-            setCartProducts ([
-                ...cartProducts,
-                {
-                    id: id,
-                    quantity:1,
-                }
-            ])
+            setCartProducts (
+                [
+                    ...cartProducts,
+                    {
+                        id: id,
+                        quantity:1,
+                    }
+                ]
+            )
         } else {
             setCartProducts(
             cartProducts.map(
@@ -69,11 +71,10 @@ export function CartProvider({children}) {
         }
         function getTotalCost() {
             let totalCost = 0;
-            cartProducts?.forEach((cartItem) => {
-                getCarData(cartItem.id).then((cars) => setPrice(cars))
-                  totalCost += parseInt(price?.price) * cartItem.quantity;
-            })
-              return totalCost
+            useEffect(() => {
+                cartProducts?.map((cartItem) => {
+                    const productData = getCarData(cartItem.id).then(cars => setPrice(cars))})
+                },[cartProducts])
             }
     const contextValue = {
         items:cartProducts,
