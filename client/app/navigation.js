@@ -10,6 +10,7 @@ export default function Navigation () {
   const {isOpen,onOpen,onOpenChange} = useDisclosure()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0)
+  const { getTotalCost } = useContext(CartContext)
   const menuItems = [
     'Vehicles',
   ]
@@ -46,7 +47,7 @@ return (
                 {cart.items?.map((currentProduct,idx) => (
                   <GetCar key={idx} id={currentProduct.id} model={currentProduct.model} image={currentProduct.image} quantity={currentProduct.quantity}/>
                 ))}
-                <h1>Total : ${cart.getTotalCost()}</h1>
+                <h1>Total : ${getTotalCost}</h1>
                 </div> : "Shopping Cart Empty"}
               </ModalBody>
               <ModalFooter>

@@ -14,7 +14,7 @@ export const CartContext = createContext({
 
 export function CartProvider({children}) {
     const [cartProducts, setCartProducts] = useState([])
-    const [price, setPrice] = useState()
+    const [totalCost, setTotalCost] = useState(0)
 // cartProducts will be the products that we put into the cart and it starts as an empty array because we don't have anything from the beginning
     function getProductQuantity(id) {
         const quantity = cartProducts.find(product => product.id === id)?.quantity;
@@ -28,15 +28,13 @@ export function CartProvider({children}) {
         const quantity = getProductQuantity(id);
 
         if (quantity === 0) {
-            setCartProducts (
-                [
-                    ...cartProducts,
-                    {
-                        id: id,
-                        quantity:1,
-                    }
-                ]
-            )
+            setCartProducts ([
+                ...cartProducts,
+                {
+                    id: id,
+                    quantity:1,
+                }
+            ])
         } else {
             setCartProducts(
             cartProducts.map(
@@ -69,20 +67,27 @@ export function CartProvider({children}) {
                 })
             )
         }
-        function getTotalCost() {
-            let totalCost = 0;
-            useEffect(() => {
-                cartProducts?.map((cartItem) => {
-                    const productData = getCarData(cartItem.id).then(cars => setPrice(cars))})
-                },[cartProducts])
-            }
+        useEffect(() => {
+            async function fetchTotalCost() {
+                let cost = 0;
+                for(const cartItem of cartProducts)
+                    try{
+                        const cars = await getCarData(cartItem.id);
+                        cost += parseInt(cars?.price) * cartItem.quantity;
+                        setTotalCost(cost)
+                    } catch(error) {
+                        console.error("Error Failed at Getting Total Cost")
+                    }
+                }
+            fetchTotalCost()
+          }, [cartProducts]);
     const contextValue = {
         items:cartProducts,
         getProductQuantity,
         addOneToCart,
         removeOneFromCart,
         deleteFromCart,
-        getTotalCost,
+        getTotalCost: totalCost,
     }
     return (
         <CartContext.Provider value={contextValue}>
