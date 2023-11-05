@@ -13,11 +13,10 @@ function GetCar(props){
         getCarData(id)
         .then(car => setData(car))
     },[])
-    console.log(cart.items)
     return (
-        <div>
+        <div className='flex flex-col w-auto'>
             <p>{data?.model}</p>
-            <img src={data?.image}/>
+            <img className='flex' src={data?.image}/>
             <p>Quantity : {quantity}</p>
             <p>${(quantity * data?.price)}</p>
             {/* <Button size="sm" onClick={() => cart.deleteFromCart(id)}>Remove</Button> */}

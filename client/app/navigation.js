@@ -7,7 +7,7 @@ import { useContext } from "react";
 import GetCar from "./helpers/cars";
 export default function Navigation () {
   const cart = useContext(CartContext)
-  const {isOpen,onOpen,onOpenChange} = useDisclosure()
+  const {isOpen,onOpen,onClose} = useDisclosure()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0)
   const { getTotalCost } = useContext(CartContext)
@@ -35,12 +35,12 @@ return (
       </NavbarItem>
       <NavbarItem>
         <Button onPress={onOpen} className="text-md text-blue-500" color="">CART ({productsCount} Items)</Button>
-        <Modal placement="auto" isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent className="flex h-auto">
+        <Modal scrollBehavior="inside" size='sm' placement={"bottom"} isOpen={isOpen} onClose={onClose}>
+        <ModalContent className="flex max-h-height">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Shopping Cart</ModalHeader>
-              <ModalBody className="w-96 h-96">
+              <ModalBody>
                 {productsCount > 0 ? 
                 <div>
                 <p>Items in your cart</p>
