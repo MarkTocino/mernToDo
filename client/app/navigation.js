@@ -15,7 +15,7 @@ export default function Navigation () {
     'Vehicles',
   ]
 return (
-    <Navbar className="max-w-screen justify-end" maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
+    <Navbar className="justify-end" maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
     <NavbarContent className="sm:justify-center">
       <NavbarMenuToggle
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
