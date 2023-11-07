@@ -3,6 +3,8 @@ import { Car } from "../models/car.js";
 import { SUV } from "../models/suv.js";
 import { hashPassword, comparePassword } from "../helpers/password.js";
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv/config'
+import stripe from "stripe";
 // USER STUFF
 // REGISTER USER
 export const registerUser = async (req, res) => {
@@ -78,4 +80,27 @@ export const hondaSuv = async (req, res) => {
 }
 export const nothing = async (req, res) => {
     res.send({title:"books"});
+}
+// Stripe
+const usingStripe = stripe(process.env.Stripe_Secret_Key);
+export const checkout = async(req,res) => {
+    const items = req.body.items;
+    let lineItems=[];
+    items.forEach((item) => {
+        lineItems.push(
+            {
+                price: item.id,
+                quantity: item.quantity
+            }
+        )
+    })
+    const session = await usingStripe.checkout.sessions.create({
+        line_items:lineItems,
+        mode:'payment',
+        success_url: "http://localhost:3000/vehicles",
+        cancel_url: "http://localhost:3000/vehicles"
+    })
+    res.send(JSON.stringify({
+        url:session.url
+    }))
 }

@@ -10,9 +10,13 @@ revalidate = 0,
 runtime = 'nodejs',
 prefferedRegion = 'auto'
 
+var regularHost = 'http://localhost:8001/cars'
+var cyclicHost = 'https://enthusiastic-puce-dove.cyclic.app/cars'
 
 async function getAllCars() {
-  const carsFetch = await fetch('https://enthusiastic-puce-dove.cyclic.app/cars')
+  // const carsFetch = await fetch(`${cyclicHost}`)
+  const carsFetch = await fetch(`${regularHost}`)
+
   const carsRes = await carsFetch.json()
   return carsRes?.cars
 }
@@ -30,9 +34,9 @@ const onlyCars = cars.slice(0,4)
 }
 
 function ListCars({cars}) {
-  const { _id,model, year, bodyType, engine, horsepower, transmission, image , mpg, price} = cars || {}
+  const { _id,id,model, year, bodyType, engine, horsepower, transmission, image , mpg, price} = cars || {}
   const cart = useContext(CartContext)
-  const productQuantity = cart.getProductQuantity(_id)
+  const productQuantity = cart.getProductQuantity(id)
   return (
   <div className="border-2 rounded-2xl p-4 m-1 h-fit w-96">
       <img src={image}/>
@@ -47,22 +51,24 @@ function ListCars({cars}) {
       {productQuantity > 0 ?
       <div>
         <div>Qty: {productQuantity}
-          <Button size="sm" onClick={() => cart.addOneToCart(_id)}>+</Button>
-          <Button size="sm" onClick={() => cart.removeOneFromCart(_id)}>-</Button>
-        <Button size="sm" color="danger" onClick={() => cart.deleteFromCart(_id)}>Remove From Cart</Button>
+          <Button size="sm" onClick={() => cart.addOneToCart(id)}>+</Button>
+          <Button size="sm" onClick={() => cart.removeOneFromCart(id)}>-</Button>
+        <Button size="sm" color="danger" onClick={() => cart.deleteFromCart(id)}>Remove From Cart</Button>
         </div>
       </div>
       : ""}
-      <Button color="primary" onClick={() => cart.addOneToCart(_id)}>Add To Cart</Button>
+      <Button color="primary" onClick={() => cart.addOneToCart(id)}>Add To Cart</Button>
     </div>
     
   )
 }
 
 async function getCarData(id) {
-  const carsFetch = await fetch('https://enthusiastic-puce-dove.cyclic.app/cars')
+  // const carsFetch = await fetch(`${cyclicHost}`)
+  const carsFetch = await fetch(`${regularHost}`)
+
   const carsRes = await carsFetch.json()
-  let productData = await carsRes?.cars.find(cars => cars._id === id);
+  let productData = await carsRes?.cars.find(cars => cars.id === id);
   if (productData == undefined) {
     console.log("Product does not exist for ID:" + id);
     return undefined;

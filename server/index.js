@@ -5,6 +5,7 @@ import dotenv from 'dotenv/config'
 
 const app = express()
 const PORT = process.env.PORT || 8001
+
 // database connection
 const connectDB = async () => {
     try {
@@ -22,3 +23,4 @@ app.use('/',router)
 connectDB().then(() => {
     app.listen(PORT, () => console.log(`Listening to ${PORT}`))
 })
+

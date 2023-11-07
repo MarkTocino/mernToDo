@@ -11,6 +11,21 @@ export default function Navigation () {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0)
   const { getTotalCost } = useContext(CartContext)
+  const checkout = async() => {
+    await fetch('https://enthusiastic-puce-dove.cyclic.app/checkout', {
+      method:"POST",
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({items:cart.items})
+    }).then((response) => {
+     return response.json();
+    }).then((response) => {
+      if(response.url) {
+        window.location.assign(response.url);
+      }
+    })
+  }
   const menuItems = [
     'Vehicles',
   ]
@@ -54,7 +69,7 @@ return (
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button color="primary"  onClick={checkout}>
                   Buy
                 </Button>
               </ModalFooter>
