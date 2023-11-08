@@ -82,7 +82,7 @@ export const nothing = async (req, res) => {
     res.send({title:"books"});
 }
 // Stripe
-const usingStripe = stripe(process.env.Stripe_Public_Key);
+const usingStripe = stripe(process.env.Stripe_Secret_Key);
 export const checkout = async(req,res) => {
     const items = req.body.items;
     let lineItems=[];
