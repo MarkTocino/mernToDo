@@ -97,8 +97,8 @@ export const checkout = async(req,res) => {
     const session = await usingStripe.checkout.sessions.create({
         line_items:lineItems,
         mode:'payment',
-        success_url: "http://localhost:3000/vehicles",
-        cancel_url: "http://localhost:3000/vehicles"
+        success_url: "https://honda-e-commerce.vercel.app/success",
+        cancel_url: "https://honda-e-commerce.vercel.app/vehicles"
     })
     res.send(JSON.stringify({
         url:session.url
