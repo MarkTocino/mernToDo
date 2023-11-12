@@ -3,6 +3,7 @@
 import { Button } from "@nextui-org/react"
 import { CartContext } from "../CartContext/CartContext"
 import { useContext } from "react"
+import { Link } from "@nextui-org/react"
 
 export const dynamic = 'auto',
 dynamicParams = true,
@@ -48,6 +49,7 @@ function ListCars({cars}) {
       <h1>Horsepower : {horsepower}</h1>
       <h1>Transmission : {transmission}</h1>
       <h1>Price : ${price}</h1>
+    <Link href={`vehicles/${id}`}>View More...</Link>
       {productQuantity > 0 ?
       <div>
         <div>Qty: {productQuantity}
