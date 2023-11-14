@@ -15,7 +15,9 @@ var regularHost = 'http://localhost:8001/cars'
 var cyclicHost = 'https://enthusiastic-puce-dove.cyclic.app/cars'
 
 async function getAllCars() {
-  const carsFetch = await fetch(`${cyclicHost}`)
+  const carsFetch = await fetch(`${cyclicHost}`, {
+    mode:'no-cors'
+  })
   // const carsFetch = await fetch(`${regularHost}`)
 
   const carsRes = await carsFetch.json()
