@@ -5,12 +5,11 @@ export default function CarData({params}) {
   const [cars, setCars] = useState()
   const [loading, setLoading] = useState(false)
   useEffect(() => {
-    fetch('https://enthusiastic-puce-dove.cyclic.app/cars')
+    fetch('http://localhost:8001/cars')
     .then((res) => res.json())
     .then(res => {
       setCars(res)
       setLoading(true)
-      console.log(cars)
     })
   },[])
   const car = cars?.cars.find((car) => car.id === params.id)
