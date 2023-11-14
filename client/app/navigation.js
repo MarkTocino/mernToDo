@@ -45,9 +45,9 @@ return (
     </NavbarContent>
     <NavbarContent className="sm:flex gap-4 p-0" justify="end">
       <NavbarItem className="hidden sm:flex">
-        <Link href="/vehicles">
+        <a href="/vehicles">
           VEHICLES
-        </Link>
+        </a>
       </NavbarItem>
       <NavbarItem className="hidden sm:flex">
         <Link href="/merchandise">
