@@ -1,5 +1,15 @@
+'use client'
 import React from 'react'
-export default async function HomePage() {
+import { useEffect } from 'react'
+export default function HomePage() {
+useEffect(() => {
+  fetch('https://enthusiastic-puce-dove.cyclic.app/',{
+    method:'GET',
+    credentials:'include',
+  })
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+})
   return (
 <div className='flex flex-col m-1'>
   <div className=" rounded-lg bg-[url('https://automobiles.honda.com/-/media/Honda-Automobiles/Homepage-Redesign/Hero/2024-Accord/MY24_Honda_Accord_Hompage_hero_L_-3019-x-1190.jpg?sc_lang=en')] bg-no-repeat w-full h-96 bg-cover bg-center">

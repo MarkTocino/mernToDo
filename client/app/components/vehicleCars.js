@@ -3,13 +3,13 @@
 import { Button } from "@nextui-org/react"
 import { CartContext } from "../CartContext/CartContext"
 import { useContext } from "react"
-import { Link } from "@nextui-org/react"
+import Link from "next/link"
 
-// export const dynamic = 'auto',
-// dynamicParams = true,
-// revalidate = 0,
-// runtime = 'nodejs',
-// prefferedRegion = 'auto'
+export const dynamic = 'auto',
+dynamicParams = true,
+revalidate = 0,
+runtime = 'nodejs',
+prefferedRegion = 'auto'
 
 var regularHost = 'http://localhost:8001/cars'
 var cyclicHost = 'https://enthusiastic-puce-dove.cyclic.app/cars'

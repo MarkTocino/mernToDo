@@ -3,7 +3,7 @@
 import { Button } from "@nextui-org/react"
 import { CartContext } from "../CartContext/CartContext"
 import { useContext } from "react"
-import { Link } from "@nextui-org/react"
+import Link from "next/link"
 
 export const dynamic = 'auto',
 dynamicParams = true,
