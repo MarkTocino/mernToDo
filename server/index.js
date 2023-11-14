@@ -20,6 +20,14 @@ app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
+app.use((req, res, next) => {
+    if (req.protocol === 'http') {
+        const httpsUrl = `https://${req.hostname}${req.url}`;
+        return res.redirect(301, httpsUrl);
+    }
+    next();
+});
+
 app.use('/',router)
 connectDB().then(() => {
     app.listen(PORT, () => console.log(`Listening to ${PORT}`))

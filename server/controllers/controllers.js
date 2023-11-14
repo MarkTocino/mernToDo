@@ -83,7 +83,12 @@ export const nothing = async (req, res) => {
 }
 // Stripe
 const usingStripe = stripe(process.env.Stripe_Secret_Key);
-export const checkout = async(req,res) => {
+export const checkout = async(req,res,next) => {
+    if (req.protocol === 'http') {
+            const httpsUrl = `https://${req.hostname}${req.url}`;
+            return res.redirect(301, httpsUrl);
+        }
+        next();
     const items = req.body.items;
     let lineItems=[];
     items.forEach((item) => {
