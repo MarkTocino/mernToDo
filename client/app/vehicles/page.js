@@ -4,7 +4,7 @@ import Suvs from '../components/vehicleSuvs'
 
 export const dynamic = 'auto',
 dynamicParams = true,
-revalidate = 5,
+revalidate = 0,
 runtime = 'nodejs',
 prefferedRegion = 'auto'
 
