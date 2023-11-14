@@ -1,6 +1,6 @@
 import React from 'react'
  export default function Merchandise() {
     return (
-        <div>Merchandise Page</div>
+        <div>Merchandise Page is still in process</div>
     )
  }

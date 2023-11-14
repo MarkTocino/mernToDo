@@ -36,9 +36,9 @@ return (
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         className="sm:hidden"
       />
-      <NavbarBrand className="ml-28 w-16 md:justify-start lg:justify-end justify-center">
+      <NavbarBrand className="collapse sm:visible md:visible xl:36 w-16 sm:justify-start md:justify-start lg:justify-start">
         <a href="/" className="font-bold text-inherit">
-                <img className="h-8 flex" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/2560px-Honda.svg.png"/>
+            <img className="h-8 flex" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/2560px-Honda.svg.png"/>
         </a>
       </NavbarBrand>
     </NavbarContent>
@@ -48,8 +48,18 @@ return (
           VEHICLES
         </Link>
       </NavbarItem>
+      <NavbarItem className="hidden sm:flex">
+        <Link href="/merchandise">
+          MERCHANDISE
+        </Link>
+      </NavbarItem>
+      <NavbarItem className="hidden sm:flex">
+        <Link href="/accessories">
+          ACCESSORIES
+        </Link>
+      </NavbarItem>
       <NavbarItem>
-        <Button onPress={onOpen} className="text-md text-blue-500" color="">CART ({productsCount} Items)</Button>
+        <Button onPress={onOpen} className="text-md text-blue-500 p-0" color="">CART ({productsCount} Items)</Button>
         <Modal scrollBehavior="inside" size='sm' placement={"bottom"} isOpen={isOpen} onClose={onClose}>
         <ModalContent className="flex max-h-height">
           {(onClose) => (

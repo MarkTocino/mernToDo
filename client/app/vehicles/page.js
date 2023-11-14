@@ -3,7 +3,7 @@ import Cars from '../components/vehicleCars'
 import Suvs from '../components/vehicleSuvs'
 export const dynamic = 'auto',
 dynamicParams = true,
-revalidate = 0,
+revalidate = 5,
 runtime = 'nodejs',
 prefferedRegion = 'auto'
 
