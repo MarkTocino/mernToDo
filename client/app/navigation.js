@@ -12,6 +12,7 @@ export default function Navigation () {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0)
   const { getTotalCost } = useContext(CartContext)
+
   const checkout = async() => {
     await fetch('https://enthusiastic-puce-dove.cyclic.app/checkout', {
       method:"POST",
@@ -45,9 +46,9 @@ return (
     </NavbarContent>
     <NavbarContent className="sm:flex gap-4 p-0" justify="end">
       <NavbarItem className="hidden sm:flex">
-        <a href="/vehicles">
+        <Link href="/vehicles">
           VEHICLES
-        </a>
+        </Link>
       </NavbarItem>
       <NavbarItem className="hidden sm:flex">
         <Link href="/merchandise">
