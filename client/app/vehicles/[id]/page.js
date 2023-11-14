@@ -6,7 +6,7 @@ export default function CarData({params}) {
   const [cars, setCars] = useState()
   const [loading, setLoading] = useState(false)
   useEffect(() => {
-    fetch('http://localhost:8001/cars')
+    fetch('https://enthusiastic-puce-dove.cyclic.app/cars')
     .then((res) => res.json())
     .then(res => {
       setCars(res)
