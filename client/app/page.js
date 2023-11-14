@@ -9,7 +9,7 @@ useEffect(() => {
   })
   .then((response) => response.json())
   .then((data) => console.log(data))
-})
+},[])
   return (
 <div className='flex flex-col m-1'>
   <div className=" rounded-lg bg-[url('https://automobiles.honda.com/-/media/Honda-Automobiles/Homepage-Redesign/Hero/2024-Accord/MY24_Honda_Accord_Hompage_hero_L_-3019-x-1190.jpg?sc_lang=en')] bg-no-repeat w-full h-96 bg-cover bg-center">
