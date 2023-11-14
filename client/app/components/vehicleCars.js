@@ -11,12 +11,11 @@ import { Link } from "@nextui-org/react"
 // runtime = 'nodejs',
 // prefferedRegion = 'auto'
 
-var regularHost = 'http://localhost:8001/cars'
+// var regularHost = 'http://localhost:8001/cars'
 var cyclicHost = 'https://enthusiastic-puce-dove.cyclic.app/cars'
 
 async function getAllCars() {
-  const carsFetch = await fetch(`${cyclicHost}`)
-  // const carsFetch = await fetch(`${regularHost}`)
+  const carsFetch = await fetch(`${regularHost || cyclicHost}`)
 
   const carsRes = await carsFetch.json()
   return carsRes?.cars
@@ -63,9 +62,7 @@ function ListCars({cars}) {
 }
 
 async function getCarData(id) {
-  const carsFetch = await fetch(`${cyclicHost}`)
-  // const carsFetch = await fetch(`${regularHost}`)
-
+  const carsFetch = await fetch(`${regularHost || cyclicHost}`)
   const carsRes = await carsFetch.json()
   let productData = await carsRes?.cars.find(cars => cars.id === id);
   if (productData == undefined) {

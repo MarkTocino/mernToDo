@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import {Image} from "@nextui-org/react";
-import {Card, CardHeader, CardBody, CardFooter, Divider, Link} from "@nextui-org/react";
 export default function CarData({params}) {
   const [cars, setCars] = useState()
   const [loading, setLoading] = useState(false)
@@ -11,6 +10,7 @@ export default function CarData({params}) {
     .then(res => {
       setCars(res)
       setLoading(true)
+      console.log(cars)
     })
   },[])
   const car = cars?.cars.find((car) => car.id === params.id)
