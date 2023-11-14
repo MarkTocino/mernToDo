@@ -5,11 +5,11 @@ import { CartContext } from "../CartContext/CartContext"
 import { useContext } from "react"
 import Link from "next/link"
 
-export const dynamic = 'force-dynamic',
-dynamicParams = true,
-revalidate = 0,
-runtime = 'nodejs',
-prefferedRegion = 'auto'
+// export const dynamic = 'force-dynamic',
+// dynamicParams = true,
+// revalidate = 0,
+// runtime = 'nodejs',
+// prefferedRegion = 'auto'
 
 var regularHost = 'http://localhost:8001/cars'
 var cyclicHost = 'https://enthusiastic-puce-dove.cyclic.app/cars'
