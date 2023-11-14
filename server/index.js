@@ -16,7 +16,6 @@ const connectDB = async () => {
         process.exit(1)
     }
 }
-app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
