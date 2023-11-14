@@ -6,7 +6,7 @@ const router = express.Router()
 router.use(
     cors({
         credentials:true,
-        origin: ['*']
+        origin: ['http://localhost:3000','https://honda-e-commerce.vercel.app']
     })
 )
 router.get('/',nothing )
