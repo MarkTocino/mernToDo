@@ -3,7 +3,7 @@
 import { Button } from "@nextui-org/react"
 import { CartContext } from "../CartContext/CartContext"
 import { useContext } from "react"
-import { Link } from "@nextui-org/react"
+import Link from "next/link"
 
 // export const dynamic = 'force-dynamic',
 // dynamicParams = true,
@@ -40,8 +40,9 @@ function ListCars({cars}) {
   const productQuantity = cart.getProductQuantity(id)
   return (
   <div className="border-2 rounded-2xl p-4 m-1 h-fit w-96">
-    <Link href={`vehicles/${id}`}>
+    <Link><a href={`vehicles/${id}`}>
       <img src={image}/>
+      </a>
       </Link>
       <h1>Model : {model}</h1>
       <h1>Year : {year}</h1>
