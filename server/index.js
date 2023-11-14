@@ -19,8 +19,6 @@ const connectDB = async () => {
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
-
-
 app.use('/',router)
 connectDB().then(() => {
     app.listen(PORT, () => console.log(`Listening to ${PORT}`))
