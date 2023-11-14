@@ -5,7 +5,7 @@ import { CartContext } from "../CartContext/CartContext"
 import { useContext } from "react"
 import Link from "next/link"
 
-// export const dynamic = 'force-dynamic',
+// export const dynamic = 'auto',
 // dynamicParams = true,
 // revalidate = 0,
 // runtime = 'nodejs',
@@ -40,7 +40,7 @@ function ListCars({cars}) {
   const productQuantity = cart.getProductQuantity(id)
   return (
   <div className="border-2 rounded-2xl p-4 m-1 h-fit w-96">
-    <Link href={`vehicles/${id}`}><a></a>
+    <Link href={`vehicles/${id}`}>
       <img src={image}/>
       </Link>
       <h1>Model : {model}</h1>
