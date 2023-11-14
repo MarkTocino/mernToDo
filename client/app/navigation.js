@@ -39,9 +39,9 @@ return (
         className="sm:hidden"
       />
       <NavbarBrand className="collapse sm:visible md:visible xl:36 w-16 sm:justify-start md:justify-start lg:justify-start">
-        <a href="/" className="font-bold text-inherit">
+        <Link href="/" className="font-bold text-inherit">
             <img className="h-8 flex" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/2560px-Honda.svg.png"/>
-        </a>
+        </Link>
       </NavbarBrand>
     </NavbarContent>
     <NavbarContent className="sm:flex gap-4 p-0" justify="end">
