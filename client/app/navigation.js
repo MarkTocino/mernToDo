@@ -12,7 +12,6 @@ export default function Navigation () {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0)
   const { getTotalCost } = useContext(CartContext)
-  console.log(cart.items)
   const checkout = async() => {
     await fetch('https://enthusiastic-puce-dove.cyclic.app/checkout', {
       method:"POST",

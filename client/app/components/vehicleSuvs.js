@@ -5,7 +5,7 @@ import { CartContext } from "../CartContext/CartContext"
 import { useContext } from "react"
 import Link from "next/link"
 
-export const dynamic = 'auto',
+export const dynamic = 'force-dynamic',
 dynamicParams = true,
 revalidate = 0,
 runtime = 'nodejs',
