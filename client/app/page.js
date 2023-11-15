@@ -10,9 +10,9 @@ export default async function HomePage() {
   </div>
   <div className="flex flex-row m-1 rounded-md ">
     <div className="bg-[url('https://paultan.org/image/2017/07/Honda-Merchandise-1.jpg')] hover:blur m-1 rounded-lg bg-cover w-1/2 h-[495px]"/>
-      <a href='/merchandise' className="text-4xl left-56 bottom-56 absolute text-black hover:underline">👉VIEW MERCHANDISE👈</a>
+      <a href='/merchandise' className="absolute  text-black hover:underline bottom-36 text-xs left-5 md:text-2xl md:bottom-80 md:left-11">👉VIEW MERCHANDISE👈</a>
     <div className="bg-[url('https://shop.autocannon.com/cdn/shop/files/Autocanon_Honda_HRC_Apparel_Store.png?v=1697482948&width=1500')] hover:blur m-1 rounded-lg bg-cover w-1/2 h-[495px]"/>
-    <a href='/accessories' className="text-4xl right-56 bottom-56 absolute text-white hover:underline">👉VIEW CAR ACCESSORIES👈</a>
+    <a href='/accessories' className="absolute text-white hover:underline bottom-36 text-xs right-1">👉VIEW CAR ACCESSORIES👈</a>
   </div>
 </div>
   )
