@@ -2,7 +2,7 @@ import express from "express"
 import router from './routes/router.js'
 import { Error, mongoose } from 'mongoose'
 import dotenv from 'dotenv/config'
-
+import session from 'express-session'
 const app = express()
 const PORT = process.env.PORT || 8001
 
@@ -16,6 +16,12 @@ const connectDB = async () => {
         process.exit(1)
     }
 }
+app.use(session({
+    secret:"some secret",
+    cookie:{maxAge:30000, secure: false},
+    saveUninitialized:true,
+    resave: false,
+}))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 

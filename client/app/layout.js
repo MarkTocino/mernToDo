@@ -11,14 +11,14 @@ const montserrat = Montserrat({
 export default function RootLayout({ children }) {
   return (
   <html lang="en">
-      <CartProvider>
     <body className={montserrat.className}>
+      <CartProvider>
         <NextUIProvider>
           <Navigation />
           {children}
         </NextUIProvider>
-    </body>
       </CartProvider>
+    </body>
   </html>
   )
 }

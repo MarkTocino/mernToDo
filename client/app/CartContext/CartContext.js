@@ -13,9 +13,19 @@ export const CartContext = createContext({
 });
 
 export function CartProvider({children}) {
+    // const cartFromLocalStorage = (typeof window !== "undefined" && JSON.parse(localStorage.getItem("cartProducts"))) || [];
     const [cartProducts, setCartProducts] = useState([])
+    useEffect(() => {
+        const item = JSON.parse(localStorage.getItem('cartProducts')) || [];
+        setCartProducts(item)   
+    },[])
+    useEffect(() => {
+        setTimeout(() => {
+            localStorage.setItem("cartProducts", JSON.stringify(cartProducts))
+        })
+    },[cartProducts])
     const [totalCost, setTotalCost] = useState(0)
-// cartProducts will be the products that we put into the cart and it starts as an empty array because we don't have anything from the beginning
+    // cartProducts will be the products that we put into the cart and it starts as an empty array because we don't have anything from the beginning
     function getProductQuantity(id) {
         const quantity = cartProducts.find(product => product.id === id)?.quantity;
         if (quantity === undefined) {
@@ -23,7 +33,6 @@ export function CartProvider({children}) {
         }
         return quantity;
     }
-
     function addOneToCart(id) { 
         const quantity = getProductQuantity(id);
 
@@ -60,13 +69,13 @@ export function CartProvider({children}) {
         }
     }
     function deleteFromCart(id) {
-            setCartProducts(
-                cartProducts => 
-                cartProducts.filter(currentProduct => {
-                    return currentProduct.id != id;
-                })
-            )
-        }
+        setCartProducts(
+            cartProducts => 
+            cartProducts.filter(currentProduct => {
+                return currentProduct.id != id;
+            })
+        )
+    }
         useEffect(() => {
             async function fetchTotalCost() {
                 let cost = 0;
@@ -81,6 +90,7 @@ export function CartProvider({children}) {
                 }
             fetchTotalCost()
           }, [cartProducts]);
+    const productsCount = cartProducts.reduce((sum, product) => sum + product.quantity, 0)
     const contextValue = {
         items:cartProducts,
         getProductQuantity,
@@ -88,6 +98,7 @@ export function CartProvider({children}) {
         removeOneFromCart,
         deleteFromCart,
         getTotalCost: totalCost,
+        productsCount,
     }
     return (
         <CartContext.Provider value={contextValue}>

@@ -5,7 +5,7 @@ import { CartContext } from "../CartContext/CartContext"
 import { useContext } from "react"
 import { Link } from "@nextui-org/react"
 
-export const dynamic = 'auto',
+export const dynamic = 'force-dynamic',
 dynamicParams = true,
 revalidate = 0,
 runtime = 'nodejs',
@@ -24,9 +24,9 @@ async function getAllCars() {
 
 export default async function Suvs() {
     const cars = await getAllCars()
-    const onlyCars = cars.slice(4,8)
+    const onlyCars = cars.filter((car) => car.bodyType === "SUV")
           return (
-        <div className="flex flex-row flex-wrap text-left justify-evenly p-5">
+        <div className="flex flex-row flex-wrap text-left p-5 justify-center">
           {onlyCars.map((cars,index) => {
             return <ListCars key={index} cars={cars}/>
           })}
@@ -38,17 +38,14 @@ function ListCars({cars}) {
     const cart = useContext(CartContext)
     const productQuantity = cart.getProductQuantity(id)
     return (
-    <div className="border-2 rounded-2xl p-4 m-1 h-fit w-96">
+    <div className="border-2 rounded-2xl p-2 mr-2 mt-2 h-fit w-fit">
+      <Link href={`vehicles/${id}`}>
         <img src={image}/>
+      </Link>
         <h1>Model : {model}</h1>
         <h1>Year : {year}</h1>
         <h1>{mpg} City/Highway MPG Rating</h1>
-        <h1>{bodyType}</h1>
-        <h1>Engine : {engine}</h1>
-        <h1>Horsepower : {horsepower}</h1>
-        <h1>Transmission : {transmission}</h1>
         <h1>Price : ${price}</h1>
-      <Link href={`vehicles/${id}`}>View More...</Link>
         {productQuantity > 0 ?
         <div>
           <div>Qty: {productQuantity}

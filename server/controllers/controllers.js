@@ -79,7 +79,8 @@ export const hondaSuv = async (req, res) => {
     return res.json({suvs});
 }
 export const nothing = async (req, res) => {
-    res.send({title:"books"});
+    req.session.username = 'anonymous'
+    res.send({message: "Session initiated"})
 }
 // Stripe
 const usingStripe = stripe(process.env.Stripe_Secret_Key);

@@ -1,7 +1,8 @@
 'use client'
-import React,{ useState } from "react";
-import {NavbarMenu, Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenuItem, image} from "@nextui-org/react";
+import React,{ useEffect, useState } from "react";
+import {NavbarMenu, Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenuToggle, NavbarMenuItem} from "@nextui-org/react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
 import { CartContext } from "./CartContext/CartContext";
 import { useContext } from "react";
 import GetCar from "./helpers/cars";
@@ -9,8 +10,8 @@ export default function Navigation () {
   const cart = useContext(CartContext)
   const {isOpen,onOpen,onClose} = useDisclosure()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0)
   const { getTotalCost } = useContext(CartContext)
+
   const checkout = async() => {
     await fetch('https://enthusiastic-puce-dove.cyclic.app/checkout', {
       method:"POST",
@@ -27,7 +28,10 @@ export default function Navigation () {
     })
   }
   const menuItems = [
+    'Home',
     'Vehicles',
+    'Merchandise',
+    'Accessories',
   ]
 return (
     <Navbar className="justify-end" maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
@@ -36,10 +40,10 @@ return (
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         className="sm:hidden"
       />
-      <NavbarBrand className="ml-28 w-16 md:justify-start lg:justify-end justify-center">
-        <a href="/" className="font-bold text-inherit">
-                <img className="h-8 flex" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/2560px-Honda.svg.png"/>
-        </a>
+      <NavbarBrand className="collapse sm:visible md:visible xl:36 w-16 sm:justify-start md:justify-start lg:justify-start">
+        <Link href="/" className="font-bold text-inherit">
+            <img className="h-8 flex" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/2560px-Honda.svg.png"/>
+        </Link>
       </NavbarBrand>
     </NavbarContent>
     <NavbarContent className="sm:flex gap-4 p-0" justify="end">
@@ -48,15 +52,25 @@ return (
           VEHICLES
         </Link>
       </NavbarItem>
+      <NavbarItem className="hidden sm:flex">
+        <Link href="/merchandise">
+          MERCHANDISE
+        </Link>
+      </NavbarItem>
+      <NavbarItem className="hidden sm:flex">
+        <Link href="/accessories">
+          ACCESSORIES
+        </Link>
+      </NavbarItem>
       <NavbarItem>
-        <Button onPress={onOpen} className="text-md text-blue-500" color="">CART ({productsCount} Items)</Button>
+        <Button onPress={onOpen} className="text-md text-blue-500 p-0" color="">CART ({cart.productsCount} Items)</Button>
         <Modal scrollBehavior="inside" size='sm' placement={"bottom"} isOpen={isOpen} onClose={onClose}>
         <ModalContent className="flex max-h-height">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Shopping Cart</ModalHeader>
               <ModalBody>
-                {productsCount > 0 ? 
+                {cart.productsCount > 0 ? 
                 <div>
                 <p>Items in your cart</p>
                 {cart.items?.map((currentProduct,idx) => (
@@ -87,7 +101,7 @@ return (
               index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
             }
             className="w-full"
-            href={`/${item.toLowerCase()}`}
+            href={item === "Home" ? '/' : `/${item.toLowerCase()}`}
             size="lg">
             {item}
           </Link>
