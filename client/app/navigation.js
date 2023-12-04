@@ -30,8 +30,8 @@ export default function Navigation () {
   const menuItems = [
     'Home',
     'Vehicles',
-    'Merchandise',
-    'Accessories',
+    // 'Merchandise',
+    // 'Accessories',
   ]
 return (
     <Navbar className="justify-end" maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
@@ -52,7 +52,7 @@ return (
           VEHICLES
         </Link>
       </NavbarItem>
-      <NavbarItem className="hidden sm:flex">
+      {/* <NavbarItem className="hidden sm:flex">
         <Link href="/merchandise">
           MERCHANDISE
         </Link>
@@ -61,7 +61,7 @@ return (
         <Link href="/accessories">
           ACCESSORIES
         </Link>
-      </NavbarItem>
+      </NavbarItem> */}
       <NavbarItem>
         <Button onPress={onOpen} className="text-md text-blue-500 p-0" color="">CART ({cart.productsCount} Items)</Button>
         <Modal scrollBehavior="inside" size='sm' placement={"bottom"} isOpen={isOpen} onClose={onClose}>
